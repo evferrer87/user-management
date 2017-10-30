@@ -1,0 +1,96 @@
+<div class="container pt-2">
+    <div class="row">
+
+        <div class="col-md-3">
+            <form>
+                <div class="form-group">
+                    <label for="inputName">First name</label>
+                    <input type="text" class="form-control" id="inputName" placeholder="Name" ng-model="user.name"
+                           ng-change="changeName(user.name)">
+                    <small class="form-text text-danger">{{nameError}}</small>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail">Email address</label>
+                    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email"
+                           ng-model="user.email" ng-change="changeEmail(user.email)">
+                    <small class="form-text text-danger">{{emailError}}</small>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary" ng-click="addUser()">Add</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-9">
+                <table my-bootstrap-table data="users" columns="columns" class="table table-sm table-striped table-bordered
+                    table-hover" cellspacing="0" width="100%" edit="updateUser" delete="deleteUser" set-selected-item="setSelectedUser"
+                       delete-modal-name="userDeleteModal" edit-modal-name="userEditModal">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                    </tr>
+                    </tfoot>
+                    <tbody></tbody>
+
+                    <div class="modal fade" id="userDeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Removal confirmation</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete the <span style="font-weight: bold">{{userToEdit.name}}</span> user?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                    <button type="button" class="btn btn-primary yes-button">Yes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="userEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Edit user</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body pt-0 pb-0">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="user-name" class="form-control-label">Name:</label>
+                                            <input type="text" class="form-control myFirstInput" id="user-name" ng-model="userToEdit.name" placeholder="Enter name">
+                                            {{editNameError}}
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="user-email" class="form-control-label">Email:</label>
+                                            <input type="email" class="form-control required" ng-model="userToEdit.email" id="user-email" placeholder="Enter email">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary save-button">Save</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </table>
+        </div>
+
+    </div>
+</div>
